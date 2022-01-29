@@ -79,6 +79,22 @@ const learnQuery = async () => {
     console.log(user);
   } catch (error) {}
 };
+
+const advance = async () => {
+  const user = await User.where("name").equals("purushoth").limit(1);
+  user[0].sayHi();
+  //call static schema methods
+  await User.findByName("purushoth");
+  //we can call query method only after query we cant directly call after model name ex: User.byName()
+  const user = await User.find().byName("purushoth");
+};
+const virtualproperty = () => {
+  const user = await User.findOne({ name: "purushoth" });
+  console.log(user); //in this object named email won't be there
+  console.log(user.namedEmail);
+};
+
 // run();
 // update();
 //learnQuery();
+advance();
